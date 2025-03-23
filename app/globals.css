@@ -258,8 +258,8 @@ body {
 /* Center the section title line */
 .section-title-line {
   height: 4px;
-  width: 60px;
-  background-color: #00ff00;
+  width: 15%;
+  background: radial-gradient(circle at center, #1DB954 0%, #19793c 50%, #3ba77600 100%);
   margin: 16px auto; /* Center horizontally */
 }
 
