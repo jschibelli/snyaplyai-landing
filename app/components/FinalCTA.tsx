@@ -9,10 +9,7 @@ export default function FinalCTA() {
           Start Free Trial
         </button>
       </div>
-      
-      <button className="sticky-cta">
-        Start Free Trial
-      </button>
+      {/* Remove the sticky CTA button */}
     </section>
   );
 }

@@ -1,5 +1,4 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
-@import "tailwindcss";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -67,68 +66,97 @@ body {
 
 /* Header styling */
 .header-container {
-  background: linear-gradient(to bottom, #0f0f0f, #1a1a1a);
+  background: linear-gradient(to bottom, #004d00, #001a00); /* Deep green → dark green gradient */
   min-height: 600px;
   text-align: center;
-  padding: 6rem 2rem; /* Increased vertical padding (py-20 equivalent) */
-  animation: pulse 5s infinite ease-in-out;
+  padding: 6rem 2rem; /* Increased vertical padding (py-24 equivalent) */
+  position: relative;
+  z-index: 1;
+}
+
+.header-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/images/hex-pattern.svg'); /* Need to add this SVG to public/images/ */
+  opacity: 0.1; /* 10% opacity */
+  z-index: -1;
 }
 
 @media (max-width: 768px) {
   .header-container {
-    animation: pulse 3s infinite ease-in-out;
   }
 }
 
-/* Hero heading updates */
+/* Hero heading updates - centered */
 .hero-heading {
-  font-size: 3.5rem; /* text-5xl equivalent */
-  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+  font-size: 64px; /* Desktop: 64px */
+  font-weight: 700; /* Bold */
   color: #ffffff;
   line-height: 1.1;
   margin-bottom: 1.5rem;
+  text-align: center; /* Changed to center */
 }
 
 @media (max-width: 768px) {
   .hero-heading {
-    font-size: 2.5rem; /* text-4xl equivalent for mobile */
+    font-size: 48px; /* Mobile: 48px */
   }
 }
 
-/* CTA button styling */
+/* Subheadline paragraph styles - centered */
+.header-container p {
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  font-weight: 400; /* Regular */
+  letter-spacing: -0.01em; /* Consistent letter spacing */
+  color: #dcdcdc;
+  margin-top: 12px;
+  max-width: 640px;
+  margin-left: auto; /* Center horizontally */
+  margin-right: auto;
+  text-align: center; /* Changed to center */
+}
+
+/* Button styling - updated colors */
 .primary-cta {
-  background-color: #22c55e;
-  color: #fff;
-  padding: 16px 32px;
+  background-color: #1DB954; /* Deep emerald green */
+  color: #000000; /* Black text for contrast */
+  padding: 12px 24px;
   font-size: 1.125rem;
   font-weight: 600;
-  border-radius: 50px;
-  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(29, 185, 84, 0.3);
   transition: all 0.3s ease;
+  border: none;
 }
 
 .primary-cta:hover {
-  background-color: #16a34a;
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(34, 197, 94, 0.5); /* shadow-lg equivalent */
+  background-color: #19a149; /* Slightly darker shade */
+  transform: translateY(-2px); /* Slight lift */
+  box-shadow: 0 6px 12px rgba(29, 185, 84, 0.4);
 }
 
+/* Update secondary CTA (Start Your Free Trial) */
 .secondary-cta {
-  border: 2px solid #22c55e;
-  color: #22c55e;
-  padding: 16px 32px;
+  background-color: transparent;
+  border: 2px solid #3BA776; /* Muted sage green */
+  color: #3BA776;
+  padding: 12px 24px;
   font-size: 1.125rem;
   font-weight: 600;
-  border-radius: 50px;
-  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
+  border-radius: 8px;
   transition: all 0.3s ease;
 }
 
 .secondary-cta:hover {
-  background-color: #22c55e;
-  color: #fff;
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(34, 197, 94, 0.5); /* shadow-lg equivalent */
+  border-color: #2d8f5c; /* Slightly darker shade */
+  color: #2d8f5c;
+  transform: translateY(-2px); /* Button lifts */
 }
 
 /* Problem-solution section styling */
@@ -203,30 +231,8 @@ body {
   }
 }
 
-/* Sticky CTA styling */
-.sticky-cta {
-  position: fixed;
-  bottom: 25px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #22c55e;
-  color: #fff;
-  padding: 16px 36px;
-  font-size: 1.25rem;
-  font-weight: 600;
-  border-radius: 50px;
-  z-index: 100;
-  box-shadow: 0 6px 16px rgba(34, 197, 94, 0.5);
-  transition: all 0.3s ease;
-  min-width: 220px;
-  text-align: center;
-}
-
-.sticky-cta:hover {
-  background-color: #16a34a;
-  transform: translateX(-50%) translateY(-5px);
-  box-shadow: 0 10px 20px rgba(34, 197, 94, 0.6);
-}
+/* Remove the sticky CTA styles */
+/* .sticky-cta { ... } */
 
 /* Section title styling */
 .section-title {
@@ -249,14 +255,12 @@ body {
   content: none;
 }
 
-/* Add the gradient line as a sibling element */
+/* Center the section title line */
 .section-title-line {
-  background: linear-gradient(to right, #22c55e, rgba(34, 197, 94, 0.3));
-  height: 2px;
-  width: 10%; /* Set the width to 10% */
-  margin: 0 auto 2rem; /* Center the line and add bottom margin */
-  transition: opacity 0.2s ease;
-  animation: drawLine 300ms ease-in-out forwards;
+  height: 4px;
+  width: 60px;
+  background-color: #00ff00;
+  margin: 16px auto; /* Center horizontally */
 }
 
 .underline-gradient {
@@ -526,4 +530,65 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Neural network animation styling - enhanced version */
+.neural-network-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Add contrast overlay for better text visibility */
+.neural-network-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.neural-network {
+  width: 100%;
+  height: 100%;
+  opacity: 0.25; /* Increased from 0.12 to 0.25 */
+  z-index: 0;
+}
+
+.neural-node {
+  filter: drop-shadow(0 0 2px rgba(0, 255, 0, 0.8));
+}
+
+/* Add these to globals.css */
+@media (max-width: 1440px) {
+  .neural-network-container {
+    /* Slight adjustments for large screens */
+    height: 110%; /* Extend slightly beyond container for seamless appearance */
+    width: 110%;
+    left: -5%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .neural-network {
+    opacity: 0.2; /* Slightly reduced opacity on medium screens */
+  }
+}
+
+@media (max-width: 425px) {
+  .neural-network {
+    opacity: 0.15; /* Further reduced opacity on small screens */
+  }
+  
+  .neural-network-container::after {
+    background: rgba(0, 0, 0, 0.5); /* Darker overlay on mobile for better text readability */
+  }
 }
