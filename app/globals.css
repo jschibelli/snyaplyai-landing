@@ -1,4 +1,44 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
 @import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.02);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+}
+
+@keyframes drawLine {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  100% {
+    width: 10%;
+    opacity: 1;
+  }
+}
+
+.header-animation {
+  animation: pulse 5s ease-in-out infinite;
+}
+
+@media (max-width: 768px) {
+  .header-animation {
+    animation: pulse 3s ease-in-out infinite; /* Faster on mobile */
+  }
+}
 
 :root {
   --background: #ffffff;
@@ -23,4 +63,467 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Header styling */
+.header-container {
+  background: linear-gradient(to bottom, #0f0f0f, #1a1a1a);
+  min-height: 600px;
+  text-align: center;
+  padding: 6rem 2rem; /* Increased vertical padding (py-20 equivalent) */
+  animation: pulse 5s infinite ease-in-out;
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    animation: pulse 3s infinite ease-in-out;
+  }
+}
+
+/* Hero heading updates */
+.hero-heading {
+  font-size: 3.5rem; /* text-5xl equivalent */
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .hero-heading {
+    font-size: 2.5rem; /* text-4xl equivalent for mobile */
+  }
+}
+
+/* CTA button styling */
+.primary-cta {
+  background-color: #22c55e;
+  color: #fff;
+  padding: 16px 32px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  border-radius: 50px;
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
+  transition: all 0.3s ease;
+}
+
+.primary-cta:hover {
+  background-color: #16a34a;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(34, 197, 94, 0.5); /* shadow-lg equivalent */
+}
+
+.secondary-cta {
+  border: 2px solid #22c55e;
+  color: #22c55e;
+  padding: 16px 32px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  border-radius: 50px;
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
+  transition: all 0.3s ease;
+}
+
+.secondary-cta:hover {
+  background-color: #22c55e;
+  color: #fff;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(34, 197, 94, 0.5); /* shadow-lg equivalent */
+}
+
+/* Problem-solution section styling */
+.problem-solution-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  padding: 4rem 2rem;
+}
+
+@media (max-width: 768px) {
+  .problem-solution-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+.problem, .solution {
+  background-color: #1e1e1e; /* Updated background color */
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.problem:hover, .solution:hover {
+  transform: translateY(-4px); /* Increased hover lift */
+  box-shadow: 0 8px 16px rgba(34, 197, 94, 0.5); /* Green shadow on hover */
+}
+
+/* Table styling */
+.toggle-table td {
+  padding: 16px;
+  line-height: 1.7rem;
+  border-right: 2px solid rgba(34, 197, 94, 0.2);
+  transition: opacity 0.2s ease-in-out;
+}
+
+/* Feature icon styling */
+.feature-icon {
+  transform: scale(1);
+  transition: transform 0.3s ease-in-out;
+  color: #22c55e;
+  font-size: 1.25rem;
+}
+
+.feature-icon:hover {
+  transform: scale(1.25);
+  color: #22c55e;
+  filter: drop-shadow(0 0 8px rgba(34, 197, 94, 0.6));
+}
+
+/* Pricing card styling */
+.pricing-card {
+  height: 320px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  background-color: rgba(26, 26, 26, 0.7);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  border: 2px solid #333; /* Consistent border thickness */
+  padding: 2rem; /* default padding */
+}
+
+.pricing-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(34, 197, 94, 0.3);
+  border-color: #22c55e; /* Green border on hover */
+}
+
+@media (max-width: 768px) {
+  .pricing-card {
+    padding: 1.5rem; /* px-6 py-8 equivalent for mobile */
+  }
+}
+
+/* Sticky CTA styling */
+.sticky-cta {
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #22c55e;
+  color: #fff;
+  padding: 16px 36px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  border-radius: 50px;
+  z-index: 100;
+  box-shadow: 0 6px 16px rgba(34, 197, 94, 0.5);
+  transition: all 0.3s ease;
+  min-width: 220px;
+  text-align: center;
+}
+
+.sticky-cta:hover {
+  background-color: #16a34a;
+  transform: translateX(-50%) translateY(-5px);
+  box-shadow: 0 10px 20px rgba(34, 197, 94, 0.6);
+}
+
+/* Section title styling */
+.section-title {
+  font-size: 2.25rem; /* text-4xl equivalent */
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.5rem; /* Reduced to accommodate the gradient line */
+  position: relative;
+  text-align: center; /* Center align the title */
+}
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2rem; /* text-3xl equivalent for mobile */
+  }
+}
+
+/* Remove the previous ::after pseudo-element */
+.section-title::after {
+  content: none;
+}
+
+/* Add the gradient line as a sibling element */
+.section-title-line {
+  background: linear-gradient(to right, #22c55e, rgba(34, 197, 94, 0.3));
+  height: 2px;
+  width: 10%; /* Set the width to 10% */
+  margin: 0 auto 2rem; /* Center the line and add bottom margin */
+  transition: opacity 0.2s ease;
+  animation: drawLine 300ms ease-in-out forwards;
+}
+
+.underline-gradient {
+  background: linear-gradient(to right, #32cd32, #006400);
+  height: 2px;
+  animation: drawLine 300ms ease-in-out;
+}
+
+.section-subtext {
+  font-size: 1.125rem;
+  font-weight: 400;
+  color: #d1d5db;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+/* Tabs styling */
+.tabs-container {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 2rem;
+  border-bottom: none; /* Remove extra green line */
+  position: relative;
+}
+
+.tab {
+  padding: 16px 28px;
+  font-size: 1.25rem;
+  color: #d1d5db;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: transparent;
+  position: relative;
+  font-weight: 500;
+}
+
+.tab:hover {
+  color: #22c55e;
+}
+
+.tab.active {
+  color: #22c55e;
+  font-weight: 700;
+}
+
+.tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #22c55e;
+  border-radius: 3px 3px 0 0;
+  transition: all 0.2s ease; /* Add smooth transition */
+  opacity: 1;
+}
+
+/* Benefits list styling */
+.benefits-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .benefits-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+.benefit-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 20px;
+  color: #d1d5db;
+  font-size: 1.125rem;
+  background-color: rgba(26, 26, 26, 0.7);
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.benefit-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(34, 197, 94, 0.2);
+}
+
+.benefit-icon {
+  width: 28px;
+  height: 28px;
+  color: #22c55e;
+  flex-shrink: 0;
+  margin-top: 3px;
+  font-size: 1.25rem; /* Updated icon size */
+}
+
+/* Feature cards instead of table */
+.feature-card {
+  background-color: rgba(26, 26, 26, 0.7);
+  padding: 24px;
+  border-radius: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-left: 4px solid #22c55e;
+}
+
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(34, 197, 94, 0.3);
+}
+
+.feature-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #22c55e;
+  margin-bottom: 0.5rem;
+}
+
+.feature-description {
+  font-size: 1rem;
+  color: #d1d5db;
+  line-height: 1.6;
+}
+
+/* Business results styling */
+.business-result {
+  display: flex;
+  align-items: center;
+  background-color: rgba(26, 26, 26, 0.7);
+  padding: 20px 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  margin-bottom: 16px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.business-result:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(34, 197, 94, 0.3);
+}
+
+.result-icon {
+  color: #22c55e;
+  margin-right: 16px;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.result-text {
+  font-size: 1.125rem;
+  color: #d1d5db;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.result-highlight {
+  color: #22c55e;
+  font-weight: 700;
+}
+
+/* Testimonial styling */
+.testimonial-card {
+  background-color: rgba(26, 26, 26, 0.7);
+  padding: 28px;
+  border-left: 4px solid #22c55e;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(34, 197, 94, 0.3);
+}
+
+.testimonial-text {
+  font-size: 1.125rem;
+  color: #d1d5db;
+  line-height: 1.7;
+  font-style: italic;
+  position: relative;
+  padding: 0 20px;
+}
+
+.testimonial-text::before,
+.testimonial-text::after {
+  content: '"';
+  font-size: 2rem;
+  color: #22c55e;
+  opacity: 0.5;
+  position: absolute;
+}
+
+.testimonial-text::before {
+  left: 0;
+  top: -10px;
+}
+
+.testimonial-text::after {
+  right: 0;
+  bottom: -30px;
+}
+
+.testimonial-author {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-top: 16px;
+  text-align: right;
+}
+
+/* Section spacing */
+.section {
+  padding: 5rem 2.5rem;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+}
+
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .section {
+    padding: 3rem 1.5rem;
+  }
+}
+
+.shadow-xl {
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+.text-gray-300 {
+  color: #d1d5db; /* Light gray for softer contrast */
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+/* Footer Layout Fix */
+.footer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  padding: 2rem;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
