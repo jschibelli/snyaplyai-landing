@@ -29,6 +29,15 @@
   }
 }
 
+@keyframes dashOffset {
+  from {
+    stroke-dashoffset: 100;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
 .header-animation {
   animation: pulse 5s ease-in-out infinite;
 }
@@ -565,6 +574,24 @@ body {
 
 .neural-node {
   filter: drop-shadow(0 0 2px rgba(0, 255, 0, 0.8));
+}
+
+/* Neural connection styling */
+.neural-connection {
+  stroke: #00ff00;
+  stroke-width: 0.3;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 2px rgba(0, 255, 0, 0.4));
+  transition: all 0.3s ease;
+}
+
+/* Light trail animation */
+.light-trail {
+  stroke-dasharray: 10;
+  stroke-dashoffset: 100;
+  animation: dashOffset 1.5s linear infinite;
+  filter: drop-shadow(0 0 5px rgba(0, 255, 0, 0.8));
+  stroke-width: 0.8;
 }
 
 /* Add these to globals.css */
