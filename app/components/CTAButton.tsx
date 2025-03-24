@@ -4,26 +4,48 @@ interface CTAButtonProps {
   variant: 'primary' | 'secondary';
   text: string;
   onClick?: () => void;
+  href?: string;
   ariaLabel?: string;
   className?: string;
 }
 
-export const CTAButton: React.FC<CTAButtonProps> = ({ 
-  variant, 
-  text, 
-  onClick, 
+export const CTAButton: React.FC<CTAButtonProps> = ({
+  variant,
+  text,
+  onClick,
+  href,
   ariaLabel,
-  className
+  className = '',
 }) => {
-  const baseStyles = "py-2 px-6 rounded font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 text-base";
+  // Base styles for all buttons
+  const baseStyles = "py-3 px-6 rounded-full font-medium text-base transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1DB954]";
   
+  // Variant-specific styles
   const variantStyles = variant === 'primary' 
     ? "bg-[#1DB954] text-white hover:scale-105 hover:shadow-md" 
-    : "border-2 border-[#1DB954] text-white hover:bg-[#1DB954] hover:text-white";
+    : "border-2 border-[#1DB954] text-white hover:bg-[#1DB954]";
+
+  // Combined styles
+  const buttonStyles = `${baseStyles} ${variantStyles} ${className}`;
   
+  // If href is provided, render as link
+  if (href) {
+    return (
+      <a 
+        href={href}
+        className={buttonStyles}
+        onClick={onClick}
+        aria-label={ariaLabel || text}
+      >
+        {text}
+      </a>
+    );
+  }
+  
+  // Otherwise render as button
   return (
-    <button
-      className={`${baseStyles} ${variantStyles} ${className || ''}`}
+    <button 
+      className={buttonStyles}
       onClick={onClick}
       aria-label={ariaLabel || text}
     >
@@ -32,12 +54,13 @@ export const CTAButton: React.FC<CTAButtonProps> = ({
   );
 };
 
-export const CTAButtonGroup: React.FC<{
-  className?: string;
-  children: React.ReactNode;
-}> = ({ className = '', children }) => {
+// Optional: For grouping buttons
+export const CTAButtonGroup: React.FC<{children: React.ReactNode, className?: string}> = ({
+  children,
+  className = '',
+}) => {
   return (
-    <div className={`flex flex-col sm:flex-row gap-4 ${className}`}>
+    <div className={`flex flex-wrap gap-4 ${className}`}>
       {children}
     </div>
   );

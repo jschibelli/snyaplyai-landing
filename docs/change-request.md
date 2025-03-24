@@ -1,73 +1,66 @@
-**📝 Change Request – SynaplyAI Landing Page**  
+**📝 Closing CTA – Draft + Change Request**  
 
-**Project:** SynaplyAI Landing Page – Final Adjustments  
+**Project:** SynaplyAI Landing Page – Closing CTA  
 **Deadline:** March 28, 2025  
 
 ---
 
-### **1. Hero Section – CTA Spacing** *(High Priority)*  
-✅ Increase the horizontal gap between the **"Join the Beta"** and **"Secure Early Access"** buttons by **+12px**.  
-✅ Ensure the buttons remain side-by-side on desktop and stacked vertically on mobile.  
+### **1. CTA Copy**  
 
-**Goal:** Improve visual balance and avoid button crowding.  
+**🔎 Headline:**  
+*"Unlock the Power of AI-Driven Content Creation Today"*  
 
----
+**💬 Subtext:**  
+*"Join the Beta and experience real-time AI content generation with built-in conflict resolution and secure scalability."*  
 
-### **2. Hero Section – "Learn More" Button** *(Medium Priority)*  
-✅ **Option 1:** Remove "Learn More" button entirely.  
-✅ **Option 2:** If retained, link it to a placeholder "About" page.  
+**🎯 CTA Buttons:**  
+✅ **"Join the Beta"** → Primary Button (Green Fill)  
+- Background: `#1DB954`  
+- Text: White (`#FFFFFF`)  
+- Hover: Scale 1.05 + soft shadow  
+- Size: 16px  
+- Padding: 12px 24px  
 
-**Goal:** Avoid confusion since there’s no live destination for this button yet.  
-
----
-
-### **3. Business Results Section – Tooltip/Hover State** *(High Priority)*  
-✅ Add a **hover state** on business metrics to provide more detail:  
-- Example for "25% Lower AI Content Costs":  
-   ➡️ *"Based on internal testing across multi-model content generation scenarios."*  
-- Example for "30% Faster Time-to-Market":  
-   ➡️ *"AI-assisted content suggestions and real-time sync improved workflow efficiency by 30%."*  
-
-**Goal:** Reinforce credibility by providing context for the business results.  
+✅ **"Secure Early Access"** → Secondary Button (Outline)  
+- Outline Color: `#1DB954`  
+- Text Color: White  
+- Hover: Background fill `#1DB954`, white text  
+- Size: 16px  
+- Padding: 12px 24px  
 
 ---
 
-### **4. Conflict Resolution Metric Update** *(High Priority)*  
-✅ Update "98% Conflict Resolution Accuracy" → **"98.7%"** (based on latest performance tests).  
+### **2. Background Treatment**  
+✅ **Background:**  
+- Dark Gradient → `rgba(0, 0, 0, 0.95)` to `rgba(10, 10, 10, 1)`  
+- Soft vertical fade at top and bottom  
 
-**Goal:** Ensure accuracy and avoid under-reporting our key differentiator.  
+✅ **Subtle Pattern Overlay:**  
+- Faint hexagonal grid overlay (`opacity: 15%`)  
+- Gives it a premium, technical feel without distraction  
 
----
-
-### **5. Pricing Section – Urgency Subtext** *(Medium Priority)*  
-✅ Under "Secure Early Access" button → Add subtext:  
-*"Priority invites will be sent on a first-come, first-served basis."*  
-
-**Goal:** Create subtle urgency without being aggressive.  
-
----
-
-### **6. Core Features Section – Grouping + Mobile Padding** *(Medium Priority)*  
-✅ Group similar features together for visual balance:  
-- **Group 1:** AI Model Access + Conflict Resolution  
-- **Group 2:** Collaboration + Event Sourcing  
-- **Group 3:** Governance + Audit Tracking  
-
-✅ Increase vertical padding by **+8px** on mobile for better tap targets and readability.  
-
-**Goal:** Reduce cognitive load and improve mobile experience.  
+✅ **Shadow:**  
+- 12px soft shadow (`rgba(0, 0, 0, 0.2)`)  
+- Creates separation from the footer  
 
 ---
 
-### **7. Mobile and Accessibility Adjustments** *(Final Step)*  
-✅ Confirm consistent button size and alignment across all screen sizes.  
-✅ Confirm hover states and focus visibility.  
-✅ Confirm `aria-label` attributes for screen readers.  
+### **3. Placement and Alignment**  
+✅ Center-align the section directly above the footer  
+✅ Keep CTA buttons side-by-side on desktop → Stack vertically on mobile  
+✅ Add **48px** top and bottom padding for visual balance  
 
 ---
 
-### **🎯 Goal:**  
-- Clean, professional alignment.  
-- Strong CTA strategy.  
-- Clear, credible business positioning.  
+### **4. Mobile and Accessibility Adjustments**  
+✅ Ensure tap size is at least **44px** for buttons (per WCAG standards)  
+✅ Add `aria-label` attributes to buttons for screen readers  
 
+---
+
+### **5. Goal:**  
+- Clean separation from footer  
+- Strong, persuasive close without being aggressive  
+- CTA buttons should drive action while maintaining a premium feel  
+
+---
