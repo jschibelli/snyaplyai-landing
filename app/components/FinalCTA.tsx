@@ -1,7 +1,7 @@
 export default function FinalCTA() {
   return (
     <section className="text-center py-10">
-      <div className="space-x-4">
+      <div className="flex flex-col items-center gap-6">
         <button className="primary-cta" aria-label="Join the SynaplyAI Beta">
           Join the Beta
         </button>
@@ -9,7 +9,6 @@ export default function FinalCTA() {
           Start Free Trial
         </button>
       </div>
-      {/* Remove the sticky CTA button */}
     </section>
   );
 }

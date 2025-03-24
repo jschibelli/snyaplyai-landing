@@ -139,16 +139,26 @@ body {
   }
 }
 
-/* Button styling - updated colors */
-.primary-cta {
-  background-color: #1DB954; /* Deep emerald green */
-  color: #000000; /* Black text for contrast */
+/* Button base styling - update sizing for all buttons */
+.primary-cta,
+.secondary-cta {
   padding: 12px 24px;
-  font-size: 1.125rem;
+  font-size: 1.125rem; /* 18px */
   font-weight: 600;
   border-radius: 8px;
+  min-width: 160px; /* Ensure minimum width is consistent */
+  height: 48px; /* Fixed height for all buttons */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Primary CTA specific styling */
+.primary-cta {
+  background-color: #1DB954;
+  color: #000000;
   box-shadow: 0 4px 8px rgba(29, 185, 84, 0.3);
-  transition: all 0.3s ease;
   border: none;
 }
 
@@ -164,22 +174,26 @@ body {
   }
 }
 
-/* Update secondary CTA (Start Your Free Trial) */
+/* Secondary CTA specific styling */
 .secondary-cta {
   background-color: transparent;
-  border: 2px solid #3BA776; /* Muted sage green */
+  border: 2px solid #3BA776;
   color: #3BA776;
-  padding: 12px 24px;
-  font-size: 1.125rem;
-  font-weight: 600;
-  border-radius: 8px;
-  transition: all 0.3s ease;
 }
 
 .secondary-cta:hover {
   border-color: #2d8f5c; /* Slightly darker shade */
   color: #2d8f5c;
   transform: translateY(-2px); /* Button lifts */
+}
+
+/* Media query for mobile adjustments */
+@media (max-width: 768px) {
+  .primary-cta,
+  .secondary-cta {
+    width: 100%; /* Full width on mobile */
+    max-width: 280px; /* Maximum width to maintain readability */
+  }
 }
 
 /* Problem-solution section styling */
@@ -876,5 +890,19 @@ body {
   .testimonial-card:hover,
   .pricing-card:hover {
     box-shadow: 0 6px 12px rgba(34, 197, 94, 0.2);
+  }
+}
+
+/* Final CTA mobile spacing */
+@media (max-width: 768px) {
+  .space-x-4 {
+    display: flex;
+    flex-direction: column;
+    gap: 24px; /* Increased from 16px to 24px for more spacing between buttons */
+  }
+
+  /* Remove the horizontal spacing that space-x-4 adds */
+  .space-x-4 > * + * {
+    margin-left: 0;
   }
 }
