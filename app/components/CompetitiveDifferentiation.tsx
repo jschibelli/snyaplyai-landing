@@ -33,25 +33,25 @@ export default function CompetitiveDifferentiation() {
       }}>
         <div className="benefit-item">
           <div className="benefit-icon">
-            <FontAwesomeIcon icon={faCogs} size="2x" />
+            <FontAwesomeIcon icon={faCogs} size="lg" />
           </div>
           <span>AI model switching based on content type</span>
         </div>
         <div className="benefit-item">
           <div className="benefit-icon">
-            <FontAwesomeIcon icon={faShieldAlt} size="2x" />
+            <FontAwesomeIcon icon={faShieldAlt} size="lg" />
           </div>
           <span>Conflict resolution accuracy &gt;98%</span>
         </div>
         <div className="benefit-item">
           <div className="benefit-icon">
-            <FontAwesomeIcon icon={faSyncAlt} size="2x" />
+            <FontAwesomeIcon icon={faSyncAlt} size="lg" />
           </div>
           <span>99.9% uptime with Redis-based state handling</span>
         </div>
         <div className="benefit-item">
           <div className="benefit-icon">
-            <FontAwesomeIcon icon={faChartLine} size="2x" />
+            <FontAwesomeIcon icon={faChartLine} size="lg" />
           </div>
           <span>Flexible token-based pricing for predictable cost control</span>
         </div>
@@ -64,25 +64,25 @@ export default function CompetitiveDifferentiation() {
       }}>
         <div className="benefit-item">
           <div className="benefit-icon">
-            <FontAwesomeIcon icon={faUsers} size="2x" />
+            <FontAwesomeIcon icon={faUsers} size="lg" />
           </div>
           <span>Multi-tenant isolation with AsyncLocalStorage → No data leakage</span>
         </div>
         <div className="benefit-item">
           <div className="benefit-icon">
-            <FontAwesomeIcon icon={faLock} size="2x" />
+            <FontAwesomeIcon icon={faLock} size="lg" />
           </div>
           <span>AI-assisted conflict resolution using vector clocks</span>
         </div>
         <div className="benefit-item">
           <div className="benefit-icon">
-            <FontAwesomeIcon icon={faBolt} size="2x" />
+            <FontAwesomeIcon icon={faBolt} size="lg" />
           </div>
           <span>Governance-first AI model handling with audit-level tracking</span>
         </div>
         <div className="benefit-item">
           <div className="benefit-icon">
-            <FontAwesomeIcon icon={faClipboardCheck} size="2x" />
+            <FontAwesomeIcon icon={faClipboardCheck} size="lg" />
           </div>
           <span>Real-time collaboration with audit-level tracking</span>
         </div>

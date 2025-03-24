@@ -79,8 +79,9 @@ body {
   min-height: 600px;
   text-align: center;
   padding: 6rem 2rem; /* Increased vertical padding (py-24 equivalent) */
-  position: relative;
+  position: relative; /* Ensure it contains absolutely positioned elements */
   z-index: 1;
+  overflow: hidden; /* Ensure no overflow */
 }
 
 .header-container::before {
@@ -97,6 +98,7 @@ body {
 
 @media (max-width: 768px) {
   .header-container {
+    padding: 5rem 20px;
   }
 }
 
@@ -113,7 +115,7 @@ body {
 
 @media (max-width: 768px) {
   .hero-heading {
-    font-size: 48px; /* Mobile: 48px */
+    font-size: 40px; /* Reduced from 48px (20% reduction) */
   }
 }
 
@@ -129,6 +131,12 @@ body {
   margin-left: auto; /* Center horizontally */
   margin-right: auto;
   text-align: center; /* Changed to center */
+}
+
+@media (max-width: 768px) {
+  .header-container p {
+    font-size: 16px; /* Reduced from 20px for hierarchy */
+  }
 }
 
 /* Button styling - updated colors */
@@ -148,6 +156,12 @@ body {
   background-color: #19a149; /* Slightly darker shade */
   transform: translateY(-2px); /* Slight lift */
   box-shadow: 0 6px 12px rgba(29, 185, 84, 0.4);
+}
+
+@media (max-width: 768px) {
+  .header-container .primary-cta {
+    margin-bottom: 12px;
+  }
 }
 
 /* Update secondary CTA (Start Your Free Trial) */
@@ -179,6 +193,7 @@ body {
 @media (max-width: 768px) {
   .problem-solution-section {
     grid-template-columns: 1fr;
+    padding: 3rem 20px;
   }
 }
 
@@ -195,6 +210,41 @@ body {
   box-shadow: 0 8px 16px rgba(34, 197, 94, 0.5); /* Green shadow on hover */
 }
 
+.problem h3, .solution h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.problem ul, .solution ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.problem li, .solution li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.problem li:last-child, .solution li:last-child {
+  margin-bottom: 0;
+}
+
+.problem li .icon, .solution li .icon {
+  color: #22c55e;
+  font-size: 1.5rem;
+  margin-right: 1.5rem; /* Increased margin for better alignment */
+}
+
+.problem li .text, .solution li .text {
+  color: #d1d5db;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
 /* Table styling */
 .toggle-table td {
   padding: 16px;
@@ -205,10 +255,12 @@ body {
 
 /* Feature icon styling */
 .feature-icon {
-  transform: scale(1);
-  transition: transform 0.3s ease-in-out;
+  width: 24px; /* Smaller icon size */
+  height: 24px;
   color: #22c55e;
-  font-size: 1.25rem;
+  flex-shrink: 0;
+  margin-right: 16px; /* Increased margin for better alignment */
+  font-size: 1.25rem; /* Updated icon size */
 }
 
 .feature-icon:hover {
@@ -217,26 +269,141 @@ body {
   filter: drop-shadow(0 0 8px rgba(34, 197, 94, 0.6));
 }
 
+@media (max-width: 768px) {
+  .feature-icon {
+    width: 24px;
+    height: 24px;
+    transform-origin: center;
+    image-rendering: -webkit-optimize-contrast;
+    align-self: flex-start;
+    margin-top: 4px;
+  }
+}
+
 /* Pricing card styling */
 .pricing-card {
   height: 320px;
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-  background-color: rgba(26, 26, 26, 0.7);
+  background-color: rgba(35, 35, 35, 0.8); /* Slightly lighter for better contrast */
   border-radius: 16px;
   backdrop-filter: blur(10px);
-  border: 2px solid #333; /* Consistent border thickness */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
   padding: 2rem; /* default padding */
+  border: none; /* Remove default border */
+  position: relative;
+  overflow: hidden; /* For plan-specific highlight */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center align all items */
+  text-align: center; /* Center align all text */
 }
 
 .pricing-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 12px 24px rgba(34, 197, 94, 0.3);
-  border-color: #22c55e; /* Green border on hover */
+}
+
+/* Add plan-specific styling */
+.pricing-card.free {
+  border-top: 4px solid #6B7280; /* Gray for free tier */
+}
+
+.pricing-card.pro {
+  border-top: 4px solid #22c55e; /* Green for pro */
+}
+
+.pricing-card.business {
+  border-top: 4px solid #3B82F6; /* Blue for business */
+}
+
+.pricing-card.enterprise {
+  border-top: 4px solid #8B5CF6; /* Purple for enterprise */
+}
+
+/* Most popular badge */
+.most-popular {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #22c55e;
+  color: #000000;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-bottom-left-radius: 8px;
+}
+
+/* Pricing plan title */
+.plan-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+/* Pricing plan cost */
+.plan-cost {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #ffffff;
+  text-align: center;
+}
+
+/* Plan features */
+.plan-feature {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center align feature items */
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.plan-feature-icon {
+  margin-right: 8px;
+  color: #22c55e;
 }
 
 @media (max-width: 768px) {
+  .pricing-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 20px;
+    margin: 0 -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    gap: 16px; /* Add spacing between cards */
+  }
+  
   .pricing-card {
-    padding: 1.5rem; /* px-6 py-8 equivalent for mobile */
+    min-width: 280px;
+    margin-right: 16px;
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    padding: 1.75rem; /* Slightly larger padding for better tap targets */
+  }
+}
+
+@media (max-width: 768px) {
+  .pricing-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 20px;
+    margin: 0 -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+  .pricing-card {
+    min-width: 280px;
+    margin-right: 16px;
+    scroll-snap-align: start;
+    flex-shrink: 0;
   }
 }
 
@@ -345,8 +512,8 @@ body {
 .benefit-item {
   display: flex;
   align-items: flex-start;
-  gap: 1rem;
-  padding: 20px;
+  gap: 1.5rem; /* Increased gap for more breathing room */
+  padding: 24px; /* Increased padding */
   color: #d1d5db;
   font-size: 1.125rem;
   background-color: rgba(26, 26, 26, 0.7);
@@ -361,8 +528,8 @@ body {
 }
 
 .benefit-icon {
-  width: 28px;
-  height: 28px;
+  width: 24px; /* Smaller icon size */
+  height: 24px;
   color: #22c55e;
   flex-shrink: 0;
   margin-top: 3px;
@@ -374,39 +541,45 @@ body {
   background-color: rgba(26, 26, 26, 0.7);
   padding: 24px;
   border-radius: 16px;
-  margin-bottom: 16px;
+  margin-bottom: 24px; /* Increased margin for better spacing */
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border-left: 4px solid #22c55e;
+  display: flex;
+  flex-direction: column; /* Changed to column layout */
 }
 
 .feature-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 20px rgba(34, 197, 94, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(34, 197, 94, 0.2);
 }
 
 .feature-title {
   font-size: 1.25rem;
   font-weight: 700;
   color: #22c55e;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0; /* Removed bottom margin */
 }
 
 .feature-description {
   font-size: 1rem;
   color: #d1d5db;
   line-height: 1.6;
+  margin-top: 8px; /* Added top margin for better spacing */
+  margin-left: 40px; /* Align with the title text */
 }
 
 /* Business results styling */
 .business-result {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: center; /* Center align all items */
+  text-align: center; /* Center align all text */
   background-color: rgba(26, 26, 26, 0.7);
-  padding: 20px 24px;
+  padding: 24px;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  margin-bottom: 16px;
+  margin-bottom: 20px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -417,9 +590,9 @@ body {
 
 .result-icon {
   color: #22c55e;
-  margin-right: 16px;
-  font-size: 24px;
-  flex-shrink: 0;
+  margin-bottom: 12px;
+  font-size: 28px;
+  align-self: center; /* Center the icon */
 }
 
 .result-text {
@@ -427,11 +600,16 @@ body {
   color: #d1d5db;
   font-weight: 500;
   line-height: 1.5;
+  text-align: center; /* Center the text */
 }
 
 .result-highlight {
   color: #22c55e;
   font-weight: 700;
+  display: block;
+  margin-bottom: 8px;
+  font-size: 1.25rem;
+  text-align: center; /* Center the highlight text */
 }
 
 /* Testimonial styling */
@@ -491,6 +669,12 @@ body {
   padding: 5rem 2.5rem;
 }
 
+@media (max-width: 768px) {
+  .section {
+    padding: 3rem 20px; /* Changed from 1.5rem to 20px */
+  }
+}
+
 .grid-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -523,15 +707,61 @@ body {
 .footer {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-  padding: 2rem;
+  gap: 2rem;
+  padding: 3rem 2rem; /* Increased vertical padding */
   align-items: center;
+  background-color: rgba(26, 26, 26, 0.5); /* Add subtle background */
+  border-top: 1px solid rgba(255, 255, 255, 0.1); /* Add subtle divider */
+}
+
+.footer a {
+  transition: color 0.2s ease;
+  display: inline-block;
+  padding: 6px 0;
+}
+
+.footer a:hover {
+  color: #22c55e;
 }
 
 @media (max-width: 768px) {
   .footer {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 2.5rem; /* Increased gap */
+    padding: 2.5rem 20px; /* Increased side padding */
+  }
+  
+  .footer a {
+    padding: 12px 0; /* Larger padding for better tap targets */
+    display: block;
+    line-height: 1.6;
+    min-height: 44px; /* Minimum touch target size */
+    margin-bottom: 6px; /* Increased spacing between links */
+    font-size: 1.1rem; /* Slightly larger font for readability */
+  }
+  
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Add gap between links */
+  }
+  
+  .social-links {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  
+  .social-links a {
+    padding: 12px;
+    margin: 0 8px;
+    background-color: rgba(34, 197, 94, 0.1); /* Subtle background */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
   }
 }
 
@@ -548,9 +778,11 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  overflow: hidden;
+  overflow: hidden; /* Ensures no overflow */
   z-index: 0;
   pointer-events: none;
+  max-height: 100%; /* Restrict to container height */
+  width: 100%; /* Ensure it fits within the container */
 }
 
 /* Add contrast overlay for better text visibility */
@@ -561,8 +793,8 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  /* Change from flat color to radial gradient for better center contrast */
-  background: radial-gradient(circle at center, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.644) 70%);
+  /* Stronger gradient for better text readability */
+  background: radial-gradient(circle at center, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.7) 70%);
   z-index: 1;
 }
 
@@ -609,5 +841,40 @@ body {
   
   .neural-network-container::after {
     background: rgba(0, 0, 0, 0.5); /* Darker overlay on mobile for better text readability */
+  }
+}
+
+/* ✅ Performance Optimization for Animations */
+/* Add will-change property to animated elements to improve GPU acceleration */
+.neural-network,
+.primary-cta,
+.secondary-cta,
+.feature-card,
+.business-result,
+.pricing-card,
+.testimonial-card {
+  will-change: transform, opacity;
+}
+
+/* Reduce animation complexity on mobile */
+@media (max-width: 768px) {
+  .neural-connection {
+    stroke-width: 0.1; /* Thinner lines on mobile */
+    transition: opacity 0.3s ease; /* Faster transitions */
+  }
+  
+  /* Simpler animations for lower-end devices */
+  .feature-card:hover,
+  .business-result:hover,
+  .testimonial-card:hover {
+    transform: translateY(-3px); /* Reduced lift */
+  }
+  
+  /* Lower-intensity shadows on mobile */
+  .feature-card:hover,
+  .business-result:hover,
+  .testimonial-card:hover,
+  .pricing-card:hover {
+    box-shadow: 0 6px 12px rgba(34, 197, 94, 0.2);
   }
 }
