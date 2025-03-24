@@ -1,6 +1,8 @@
 "use client";
 import { motion } from 'framer-motion';
 import NeuralNetworkAnimation from './NeuralNetworkAnimation';
+import Logo from './logo';
+import Image from 'next/image';
 
 export default function HeaderCTA() {
   return (
@@ -8,7 +10,7 @@ export default function HeaderCTA() {
       <NeuralNetworkAnimation />
       <div className="header-content">
         <div className="container mx-auto">
-          <div className="max-w-3xl mx-auto z-10 relative"> {/* Added relative and z-10 for proper stacking */}
+          <div className="max-w-3xl mx-auto z-10 relative">
             <motion.h1 
               className="hero-heading"
               initial={{ opacity: 0, y: 20 }}
@@ -17,7 +19,17 @@ export default function HeaderCTA() {
             >
               Create, Collaborate, and Scale with AI
             </motion.h1>
-            <div className="section-title-line"></div> {/* Already centered in CSS */}
+            
+            <div className="flex justify-center my-6"> {/* Logo container */}
+              <Image 
+                src="/logo.png" 
+                alt="SynaplyAI Logo" 
+                width={240} /* Increased from 180 */
+                height={67} /* Increased from 50 - maintaining aspect ratio */
+                className="logo"
+              />
+            </div>
+            
             <motion.p 
               className="mt-4 text-lg"
               initial={{ opacity: 0, y: 20 }}

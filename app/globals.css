@@ -926,3 +926,19 @@ body {
     padding: 0 20px;
   }
 }
+
+/* Logo styling */
+.logo {
+  transition: opacity 0.3s ease;
+}
+
+.logo:hover {
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .logo {
+    width: 180px; /* Increased from 120px */
+    height: auto;
+  }
+}
