@@ -30,61 +30,68 @@ export default function NeuralNetworkAnimation() {
     
     if (!networkRef.current) return;
     
-    // Create a timeline for coordinated animations
-    const timeline = gsap.timeline({
-      repeat: -1,
-      yoyo: true,
-    });
-    
-    // Add scale animation (pulse)
-    timeline.to(networkRef.current, {
-      scale: 1.05,
-      duration: 3,
-      ease: "power1.inOut",
-    });
-    
-    // Add horizontal drift animation
-    gsap.to(networkRef.current, {
-      x: '5%',
-      duration: 20,
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut",
-    });
-    
-    // Add light trail animations
+    // Add connection animations
     if (isClient && connections.length > 0) {
-      const activateRandomTrails = () => {
-        const newTrails: string[] = [];
-        const trailCount = 3 + Math.floor(Math.random() * 3); // 3-5 trails
+      const activateConnections = () => {
+        // Get 4-6 random connections to animate
+        const connectionCount = 4 + Math.floor(Math.random() * 3);
+        const newActiveConnections: string[] = [];
         
-        for (let i = 0; i < trailCount; i++) {
+        // Select random connections
+        for (let i = 0; i < connectionCount; i++) {
           const randomIndex = Math.floor(Math.random() * connections.length);
-          if (connections[randomIndex].pathId) {
-            newTrails.push(connections[randomIndex].pathId || "");
-          }
+          const connection = connections[randomIndex];
+          if (!connection.pathId) continue;
+          
+          newActiveConnections.push(connection.pathId);
         }
         
-        setActiveTrails(newTrails);
+        // Animate the fade in/out of each connection
+        newActiveConnections.forEach(pathId => {
+          const element = document.getElementById(pathId);
+          if (!element) return;
+          
+          // Fade in
+          gsap.to(element, {
+            opacity: 0.9,
+            duration: 0.8,
+            ease: "power1.inOut",
+            onComplete: () => {
+              // Hold briefly
+              gsap.to(element, {
+                opacity: 0.9,
+                duration: 0.6,
+                onComplete: () => {
+                  // Fade out
+                  gsap.to(element, {
+                    opacity: 0.1,
+                    duration: 0.8,
+                    ease: "power1.inOut"
+                  });
+                }
+              });
+            }
+          });
+        });
+        
+        setActiveTrails(newActiveConnections);
       };
       
-      // Initial trails
-      setTimeout(activateRandomTrails, 800);
+      // Initial connections
+      setTimeout(activateConnections, 800);
       
-      // Periodically change trails
-      const interval = setInterval(activateRandomTrails, 2000);
+      // Periodically change active connections
+      const interval = setInterval(activateConnections, 3000);
       
       return () => {
         clearInterval(interval);
-        timeline.kill();
-        gsap.killTweensOf(networkRef.current);
+        gsap.killTweensOf(".neural-connection");
       };
     }
     
     return () => {
       // Clean up animations
-      timeline.kill();
-      gsap.killTweensOf(networkRef.current);
+      gsap.killTweensOf(".neural-connection");
     };
   }, [isClient]);
 
@@ -153,7 +160,7 @@ export default function NeuralNetworkAnimation() {
           connections.push({
             from: node.id,
             to: targetNode.id,
-            opacity: 0.2 + ((node.id + i) % 10) / 20,
+            opacity: 0.1, // Start with low opacity
             pathId
           });
         }
@@ -170,7 +177,7 @@ export default function NeuralNetworkAnimation() {
           connections.push({
             from: node.id,
             to: targetNode.id,
-            opacity: 0.2 + (node.id % 10) / 20,
+            opacity: 0.1,
             pathId
           });
         }
@@ -187,7 +194,7 @@ export default function NeuralNetworkAnimation() {
           connections.push({
             from: node.id,
             to: targetNode.id,
-            opacity: 0.15 + (node.id % 10) / 30, // Slightly less visible
+            opacity: 0.1,
             pathId
           });
         }
@@ -219,8 +226,10 @@ export default function NeuralNetworkAnimation() {
               y1={fromNode.y}
               x2={toNode.x}
               y2={toNode.y}
-              className={`neural-connection ${isActive ? 'light-trail' : ''}`}
-              opacity={isActive ? 0.9 : conn.opacity * 0.5}
+              className="neural-connection"
+              opacity={conn.opacity}
+              stroke="#00ff00"
+              strokeWidth={0.2}
             />
           );
         })}

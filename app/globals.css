@@ -561,7 +561,8 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.4);
+  /* Change from flat color to radial gradient for better center contrast */
+  background: radial-gradient(circle at center, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.644) 70%);
   z-index: 1;
 }
 
@@ -579,19 +580,10 @@ body {
 /* Neural connection styling */
 .neural-connection {
   stroke: #00ff00;
-  stroke-width: 0.3;
+  stroke-width: 0.2; /* Slightly thicker lines for visibility */
   stroke-linecap: round;
   filter: drop-shadow(0 0 2px rgba(0, 255, 0, 0.4));
-  transition: all 0.3s ease;
-}
-
-/* Light trail animation */
-.light-trail {
-  stroke-dasharray: 10;
-  stroke-dashoffset: 100;
-  animation: dashOffset 1.5s linear infinite;
-  filter: drop-shadow(0 0 5px rgba(0, 255, 0, 0.8));
-  stroke-width: 0.8;
+  transition: opacity 0.4s ease;
 }
 
 /* Add these to globals.css */
