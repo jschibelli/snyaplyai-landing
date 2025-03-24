@@ -47,7 +47,7 @@ export default function CoreFeatures() {
   ];
 
   return (
-    <section className="section">
+    <section className="py-10 px-8 max-w-7xl mx-auto">
       <h2 className="section-title text-center">Core Features</h2>
       <div className="section-title-line"></div>
       <p className="section-subtext text-center">

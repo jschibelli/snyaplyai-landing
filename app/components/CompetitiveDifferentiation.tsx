@@ -7,7 +7,7 @@ export default function CompetitiveDifferentiation() {
   const [activeTab, setActiveTab] = useState('benefits');
   
   return (
-    <section className="py-10">
+    <section className="py-10 px-8 max-w-7xl mx-auto">
       <h2 className="section-title">Why SynaplyAI Stands Out</h2>
       <div className="section-title-line"></div>
       

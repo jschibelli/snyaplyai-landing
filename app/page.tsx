@@ -3,24 +3,24 @@ import ProblemSolution from "./components/ProblemSolution";
 import CompetitiveDifferentiation from "./components/CompetitiveDifferentiation";
 import CoreFeatures from "./components/CoreFeatures";
 import BusinessImpact from "./components/BusinessImpact";
-import SocialProof from "./components/SocialProof";
 import PricingTable from "./components/PricingTable";
 import FinalCTA from "./components/FinalCTA";
 import Footer from "./components/Footer";
+import LeadersSection from './components/LeadersSection';
 
 export default function Home() {
   return (
-    <div className="min-h-screen p-8 pb-20 sm:p-20">
+    <main className="min-h-screen">
       <HeaderCTA />
-      
       <ProblemSolution />
+      <LeadersSection />
       <CompetitiveDifferentiation />
-      <CoreFeatures />
       <BusinessImpact />
-      <SocialProof />
+      <CoreFeatures />
+
       <PricingTable />
-      <FinalCTA />
+      {/* <FinalCTA /> */}
       <Footer />
-    </div>
+    </main>
   );
 }

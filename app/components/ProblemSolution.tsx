@@ -3,7 +3,7 @@ import { faFileAlt, faGlobe, faShieldAlt } from '@fortawesome/free-solid-svg-ico
 
 export default function ProblemSolution() {
   return (
-    <section className="py-10">
+    <section className="py-10  max-w-7xl mx-auto">
       <h2 className="section-title text-center">AI Content Creation – Without the Limitations</h2>
       <div className="section-title-line"></div>
       <div className="problem-solution-section grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">

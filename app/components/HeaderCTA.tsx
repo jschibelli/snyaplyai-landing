@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import NeuralNetworkAnimation from './NeuralNetworkAnimation';
 import Logo from './logo';
 import Image from 'next/image';
+import { CTAButton, CTAButtonGroup } from './CTAButton';
 
 export default function HeaderCTA() {
   return (
@@ -11,24 +12,23 @@ export default function HeaderCTA() {
       <div className="header-content">
         <div className="container mx-auto">
           <div className="max-w-3xl mx-auto z-10 relative">
+          <div className="flex justify-center mb-2"> {/* Reduced space by changing my-6 to mb-2 */}
+              <Image 
+                src="/logo.png" 
+                alt="SynaplyAI Logo" 
+                width={280} /* Increased from 240 */
+                height={78} /* Increased from 67 - maintaining aspect ratio */
+                className="logo"
+              />
+            </div>
             <motion.h1 
               className="hero-heading"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              Create, Collaborate, and Scale with AI
+              synaply<span className="text-[#1DB954]">ai</span>
             </motion.h1>
-            
-            <div className="flex justify-center my-6"> {/* Logo container */}
-              <Image 
-                src="/logo.png" 
-                alt="SynaplyAI Logo" 
-                width={240} /* Increased from 180 */
-                height={67} /* Increased from 50 - maintaining aspect ratio */
-                className="logo"
-              />
-            </div>
             
             <motion.p 
               className="mt-4 text-lg"
@@ -45,12 +45,20 @@ export default function HeaderCTA() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
-              <button className="primary-cta" aria-label="Join the SynaplyAI Beta">
-                Join the Beta
-              </button>
-              <button className="secondary-cta" aria-label="Start Free Trial">
-                Start Free Trial
-              </button>
+              <CTAButtonGroup className="justify-center">
+                <CTAButton 
+                  text="Join the Beta" 
+                  href="/signup" 
+                  variant="primary"
+                  ariaLabel="Join our beta program"
+                />
+                <CTAButton 
+                  text="Secure Early Access" 
+                  href="/early-access" 
+                  variant="secondary"
+                  ariaLabel="Secure early access to platform"
+                />
+              </CTAButtonGroup>
             </motion.div>
           </div>
         </div>

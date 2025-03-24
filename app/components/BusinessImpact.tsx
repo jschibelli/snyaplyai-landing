@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDollarSign, faChartLine, faRocket, faShieldAlt } from '@fortawesome/free-solid-svg-icons';
+import { CTAButton } from './CTAButton';
 
 export default function BusinessImpact() {
   const impacts = [
@@ -26,7 +27,7 @@ export default function BusinessImpact() {
   ];
 
   return (
-    <section className="section">
+    <section className="py-10 px-8 max-w-7xl mx-auto">
       <h2 className="section-title">Deliver Measurable Business Results</h2>
       <div className="section-title-line"></div>
       <p className="section-subtext text-center">
@@ -46,6 +47,14 @@ export default function BusinessImpact() {
           </div>
         ))}
       </div>
+      <div className="mt-12 text-center">
+          <CTAButton 
+            text="Join the Beta" 
+            href="/signup" 
+            variant="primary"
+            ariaLabel="Join our beta program"
+          />
+        </div>
     </section>
   );
 }

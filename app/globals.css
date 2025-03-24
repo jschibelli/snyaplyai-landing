@@ -969,3 +969,75 @@ body {
     height: auto;
   }
 }
+
+/* Industry Leading Technology Section Styling */
+.leaders-section {
+  background-color: rgba(26, 26, 26, 0.7);
+  padding: 48px 0;
+}
+
+.leaders-section h2 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+.leaders-section .column {
+  padding: 0 16px;
+  margin-bottom: 24px;
+}
+
+.leaders-section p {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+}
+
+.leaders-section strong {
+  color: #1DB954;
+}
+
+.leaders-section .cta-text {
+  max-width: 640px;
+  margin: 0 auto 1.5rem auto;
+}
+
+.leaders-section .cta-button-primary {
+  background-color: #1DB954;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 6px;
+  transition: transform 0.3s ease;
+}
+
+.leaders-section .cta-button-primary:hover {
+  transform: scale(1.05);
+}
+
+.leaders-section .cta-button-secondary {
+  border: 1px solid #1DB954;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.leaders-section .cta-button-secondary:hover {
+  background-color: rgba(29, 185, 84, 0.2);
+}
+
+.leaders-section .exclusive-text {
+  font-family: 'Inter', sans-serif;
+  color: #A5A5A5;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .leaders-section {
+    padding: 32px 0;
+  }
+  
+  .leaders-section .cta-buttons {
+    flex-direction: column;
+    gap: 12px;
+  }
+}

@@ -16,7 +16,7 @@ export default function SocialProof() {
   ];
 
   return (
-    <section className="section">
+    <section className="py-10  max-w-7xl mx-auto">
       <h2 className="section-title text-center">Trusted by Industry Leaders</h2>
       <div className="section-title-line"></div>
       <p className="section-subtext text-center">
