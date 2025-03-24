@@ -82,6 +82,12 @@ body {
   position: relative; /* Ensure it contains absolutely positioned elements */
   z-index: 1;
   overflow: hidden; /* Ensure no overflow */
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  position: relative;
 }
 
 .header-container::before {
@@ -904,5 +910,19 @@ body {
   /* Remove the horizontal spacing that space-x-4 adds */
   .space-x-4 > * + * {
     margin-left: 0;
+  }
+}
+
+/* Container styling */
+.container-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .container-section {
+    padding: 0 20px;
   }
 }
