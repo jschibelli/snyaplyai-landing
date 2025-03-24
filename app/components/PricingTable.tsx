@@ -54,8 +54,9 @@ export default function PricingSection() {
           Pricing
         </motion.h2>
         
+        {/* Changed from grid to pricing-container class for better mobile support */}
         <motion.div 
-          className="pricing-container grid grid-cols-1 md:grid-cols-3 gap-8 mb-10"
+          className="pricing-container md:grid md:grid-cols-3 md:gap-8 mb-10"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
@@ -83,6 +84,15 @@ export default function PricingSection() {
             </div>
           ))}
         </motion.div>
+        
+        {/* Add scroll indicator for mobile */}
+        <div className="md:hidden flex justify-center mb-6">
+          <div className="flex space-x-1">
+            <div className="w-2 h-2 rounded-full bg-gray-500"></div>
+            <div className="w-2 h-2 rounded-full bg-gray-300"></div>
+            <div className="w-2 h-2 rounded-full bg-gray-300"></div>
+          </div>
+        </div>
         
         {/* Single CTA with secondary style as requested */}
         <motion.div 

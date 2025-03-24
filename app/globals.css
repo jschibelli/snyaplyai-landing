@@ -416,6 +416,16 @@ body {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
+    /* other styles */
+  }
+}
+
+@media (max-width: 768px) {
+  .pricing-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
     padding-bottom: 20px;
     margin: 0 -20px;
     padding-left: 20px;
