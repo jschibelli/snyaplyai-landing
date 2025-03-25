@@ -1,13 +1,18 @@
 "use client";
 import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+// Import the HubSpot types
+import '../types/hubspot';
 
 export default function EarlyAccessForm({ onClose }: { onClose: () => void }) {
   const formContainerRef = useRef<HTMLDivElement>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    let isMounted = true;
+    
     // Load HubSpot script
     const script = document.createElement('script');
     script.charset = 'utf-8';
@@ -15,29 +20,52 @@ export default function EarlyAccessForm({ onClose }: { onClose: () => void }) {
     script.src = '//js-na2.hsforms.net/forms/embed/v2.js';
     script.async = true;
     
-    script.onload = () => {
-      if (formContainerRef.current && window.hbspt) {
+    const handleScriptLoad = () => {
+      try {
+        if (!isMounted || !formContainerRef.current || !window.hbspt) {
+          return;
+        }
+        
         window.hbspt.forms.create({
           region: 'na2',
           portalId: '242357063',
-          formId: '9edc5b80-7de8-491f-9aa2-528735e3d5ce', // Early Access form ID
+          formId: '9edc5b80-7de8-491f-9aa2-528735e3d5ce',
           target: '#early-access-form-container',
           onFormReady: () => {
-            setIsLoading(false);
+            if (isMounted) {
+              setIsLoading(false);
+            }
           },
           onFormSubmit: () => {
-            setFormSubmitted(true);
-            setTimeout(() => {
-              onClose();
-            }, 3000);
+            if (isMounted) {
+              setFormSubmitted(true);
+              setTimeout(() => {
+                onClose();
+              }, 3000);
+            }
           }
         });
+      } catch (err) {
+        if (isMounted) {
+          console.error('Error creating HubSpot form:', err);
+          setError('Failed to load the form. Please try again later.');
+          setIsLoading(false);
+        }
+      }
+    };
+    
+    script.onload = handleScriptLoad;
+    script.onerror = () => {
+      if (isMounted) {
+        setError('Failed to load the form script. Please try again later.');
+        setIsLoading(false);
       }
     };
     
     document.head.appendChild(script);
     
     return () => {
+      isMounted = false;
       if (document.head.contains(script)) {
         document.head.removeChild(script);
       }
@@ -67,11 +95,27 @@ export default function EarlyAccessForm({ onClose }: { onClose: () => void }) {
               <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#1DB954]"></div>
             </div>
           )}
-          <div 
-            id="early-access-form-container"
-            ref={formContainerRef}
-            className="hubspot-form"
-          />
+          
+          {error && (
+            <div className="text-red-500 text-center py-4">
+              {error}
+              <button 
+                className="block mx-auto mt-2 text-white bg-[#1DB954] px-4 py-2 rounded"
+                onClick={() => window.location.reload()}
+              >
+                Retry
+              </button>
+            </div>
+          )}
+          
+          {!error && (
+            <div 
+              id="early-access-form-container"
+              ref={formContainerRef}
+              className="hubspot-form"
+            />
+          )}
+          
           {/* Add custom styling for the HubSpot form */}
           <style jsx global>{`
             /* Enhanced visibility for form elements */

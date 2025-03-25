@@ -1,5 +1,7 @@
 "use client";
 import React, { useEffect, useRef, useState } from 'react';
+// Import the HubSpot types
+import '../types/hubspot';
 
 export default function CustomHubspotFormWithJS({ onClose }: { onClose: () => void }) {
   const formContainerRef = useRef<HTMLDivElement>(null);
@@ -135,22 +137,4 @@ export default function CustomHubspotFormWithJS({ onClose }: { onClose: () => vo
       )}
     </div>
   );
-}
-
-// Add TypeScript declaration for HubSpot
-declare global {
-  interface Window {
-    hbspt: {
-      forms: {
-        create: (config: {
-          region: string;
-          portalId: string;
-          formId: string;
-          target: string;
-          onFormReady?: () => void;
-          onFormSubmit?: () => void;
-        }) => void;
-      };
-    };
-  }
 }
