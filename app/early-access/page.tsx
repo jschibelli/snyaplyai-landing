@@ -2,6 +2,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+// Import the shared types
+import '../types/hubspot';
 
 export default function EarlyAccessPage() {
   const router = useRouter();
@@ -11,65 +13,30 @@ export default function EarlyAccessPage() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    let isMounted = true;
-    
-    // Load HubSpot script
     const script = document.createElement('script');
-    script.charset = 'utf-8';
-    script.type = 'text/javascript';
-    script.src = '//js-na2.hsforms.net/forms/embed/v2.js';
-    script.async = true;
-    
-    const handleScriptLoad = () => {
-      try {
-        if (!isMounted || !formContainerRef.current || !window.hbspt) {
-          return;
+    script.src = "//js.hsforms.net/forms/embed/v2.js";
+    script.charset = "utf-8";
+    script.type = "text/javascript";
+    script.defer = true;
+    script.onload = () => {
+      window.hbspt.forms.create({
+        region: "na2",
+        portalId: "242357063",
+        formId: "9edc5b80-7de8-491f-9aa2-528735e3d5ce",
+        target: "#early-access-form-container",
+        onFormSubmitted: function() {
+          console.log("Form submitted to HubSpot directly");
+          setFormSubmitted(true);
+          setTimeout(() => {
+            router.push('/');
+          }, 3000);
         }
-        
-        window.hbspt.forms.create({
-          region: 'na2',
-          portalId: '242357063',
-          formId: '9edc5b80-7de8-491f-9aa2-528735e3d5ce',
-          target: '#early-access-form-container',
-          onFormReady: () => {
-            if (isMounted) {
-              setIsLoading(false);
-            }
-          },
-          onFormSubmit: () => {
-            if (isMounted) {
-              setFormSubmitted(true);
-              // Redirect to home page after showing confirmation
-              setTimeout(() => {
-                router.push('/');
-              }, 3000);
-            }
-          }
-        });
-      } catch (err) {
-        if (isMounted) {
-          console.error('Error creating HubSpot form:', err);
-          setError('Failed to load the form. Please try again later.');
-          setIsLoading(false);
-        }
-      }
+      });
     };
-    
-    script.onload = handleScriptLoad;
-    script.onerror = () => {
-      if (isMounted) {
-        setError('Failed to load the form script. Please try again later.');
-        setIsLoading(false);
-      }
-    };
-    
     document.head.appendChild(script);
     
     return () => {
-      isMounted = false;
-      if (document.head.contains(script)) {
-        document.head.removeChild(script);
-      }
+      document.head.removeChild(script);
     };
   }, [router]);
 
@@ -296,23 +263,4 @@ export default function EarlyAccessPage() {
       </div>
     </div>
   );
-}
-
-// Add TypeScript declaration for HubSpot
-declare global {
-  interface Window {
-    hbspt: {
-      forms: {
-        create: (config: {
-          region: string;
-          portalId: string;
-          formId: string;
-          target: string;
-          onFormReady?: () => void;
-          onFormSubmit?: () => void;
-          onFormSubmitted?: () => void;
-        }) => void;
-      };
-    };
-  }
 }

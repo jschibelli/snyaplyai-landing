@@ -2,6 +2,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+// Import the shared types
+import '../types/hubspot';
 
 export default function JoinBetaPage() {
   const router = useRouter();
@@ -11,65 +13,31 @@ export default function JoinBetaPage() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    let isMounted = true;
-    
-    // Load HubSpot script
+    // Using the same script loading approach that works for early-access
     const script = document.createElement('script');
-    script.charset = 'utf-8';
-    script.type = 'text/javascript';
-    script.src = '//js-na2.hsforms.net/forms/embed/v2.js';
-    script.async = true;
-    
-    const handleScriptLoad = () => {
-      try {
-        if (!isMounted || !formContainerRef.current || !window.hbspt) {
-          return;
+    script.src = "//js.hsforms.net/forms/embed/v2.js";
+    script.charset = "utf-8";
+    script.type = "text/javascript";
+    script.defer = true;
+    script.onload = () => {
+      window.hbspt.forms.create({
+        region: "na2",
+        portalId: "242357063",
+        formId: "f081d6b8-8d0a-4acb-ba39-a489627973b7",
+        target: "#beta-form-container",
+        onFormSubmitted: function() {
+          console.log("Form submitted to HubSpot directly");
+          setFormSubmitted(true);
+          setTimeout(() => {
+            router.push('/');
+          }, 3000);
         }
-        
-        window.hbspt.forms.create({
-          region: 'na2',
-          portalId: '242357063',
-          formId: 'f081d6b8-8d0a-4acb-ba39-a489627973b7',
-          target: '#beta-form-container',
-          onFormReady: () => {
-            if (isMounted) {
-              setIsLoading(false);
-            }
-          },
-          onFormSubmit: () => {
-            if (isMounted) {
-              setFormSubmitted(true);
-              // Redirect to home page after showing confirmation
-              setTimeout(() => {
-                router.push('/');
-              }, 3000);
-            }
-          }
-        });
-      } catch (err) {
-        if (isMounted) {
-          console.error('Error creating HubSpot form:', err);
-          setError('Failed to load the form. Please try again later.');
-          setIsLoading(false);
-        }
-      }
+      });
     };
-    
-    script.onload = handleScriptLoad;
-    script.onerror = () => {
-      if (isMounted) {
-        setError('Failed to load the form script. Please try again later.');
-        setIsLoading(false);
-      }
-    };
-    
     document.head.appendChild(script);
     
     return () => {
-      isMounted = false;
-      if (document.head.contains(script)) {
-        document.head.removeChild(script);
-      }
+      document.head.removeChild(script);
     };
   }, [router]);
 
@@ -192,14 +160,14 @@ export default function JoinBetaPage() {
                 /* Legal text */
                 .hubspot-form .legal-consent-container {
                   font-size: 0.875rem !important;
-                  color: #e2e8f0 !important;
+                  color: #ffffff !important;
                   line-height: 1.5 !important;
                   margin-top: 1rem !important;
                 }
                 
                 /* Rich text elements */
                 .hubspot-form .hs-richtext {
-                  color: #e2e8f0 !important;
+                  color: #ffffff !important;
                   font-size: 0.875rem !important;
                   line-height: 1.5 !important;
                 }
