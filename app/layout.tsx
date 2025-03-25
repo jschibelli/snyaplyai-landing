@@ -1,6 +1,8 @@
+import React from 'react';
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { FormModalProvider } from './context/FormModalContext';
 
 // Use Inter as a replacement for Geist
 const inter = Inter({
@@ -31,7 +33,11 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
-      <body>{children}</body>
+      <body>
+        <FormModalProvider>
+          {children}
+        </FormModalProvider>
+      </body>
     </html>
   );
 }

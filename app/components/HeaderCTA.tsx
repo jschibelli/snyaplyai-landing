@@ -48,8 +48,8 @@ export default function HeaderCTA() {
               <CTAButtonGroup className="justify-center">
                 <CTAButton 
                   text="Join the Beta" 
-                  href="/signup" 
                   variant="primary"
+                  isJoinBeta={true} // Add this line
                   ariaLabel="Join our beta program"
                 />
                 <CTAButton 
