@@ -1,7 +1,8 @@
 "use client";
 import React, { useState } from 'react';
-import { useFormModal } from '../context/FormModalContext';
-import HubspotFormModal from './HubspotFormModal';
+import CustomHubspotFormWithJS from './CustomHubspotFormWithJS';
+import EarlyAccessForm from './EarlyAccessForm';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface CTAButtonProps {
   variant: 'primary' | 'secondary';
@@ -11,6 +12,7 @@ interface CTAButtonProps {
   ariaLabel?: string;
   className?: string;
   isJoinBeta?: boolean;
+  isEarlyAccess?: boolean;
 }
 
 export const CTAButton: React.FC<CTAButtonProps> = ({
@@ -21,8 +23,8 @@ export const CTAButton: React.FC<CTAButtonProps> = ({
   ariaLabel,
   className = '',
   isJoinBeta = false,
+  isEarlyAccess = false,
 }) => {
-  const { openFormModal } = useFormModal();
   const [isModalOpen, setIsModalOpen] = useState(false);
   
   // Base styles for all buttons
@@ -40,7 +42,11 @@ export const CTAButton: React.FC<CTAButtonProps> = ({
     if (isJoinBeta || text.toLowerCase().includes('join the beta')) {
       e.preventDefault();
       setIsModalOpen(true);
-      openFormModal();
+    }
+    
+    if (isEarlyAccess || text.toLowerCase().includes('secure early access') || text.toLowerCase().includes('early access')) {
+      e.preventDefault();
+      setIsModalOpen(true);
     }
     
     if (onClick) {
@@ -48,14 +54,17 @@ export const CTAButton: React.FC<CTAButtonProps> = ({
     }
   };
   
-  // If href is provided, render as link
-  if (href && !isJoinBeta && !text.toLowerCase().includes('join the beta')) {
+  // If href is provided and it's not a button that triggers a modal, render as link
+  if (href && !isJoinBeta && !isEarlyAccess && 
+      !text.toLowerCase().includes('join the beta') && 
+      !text.toLowerCase().includes('secure early access') && 
+      !text.toLowerCase().includes('early access')) {
     return (
       <>
         <a 
           href={href}
           className={buttonStyles}
-          onClick={handleClick}
+          onClick={onClick}
           aria-label={ariaLabel || text}
         >
           {text}
@@ -75,12 +84,32 @@ export const CTAButton: React.FC<CTAButtonProps> = ({
         {text}
       </button>
 
-      {isJoinBeta && (
-        <HubspotFormModal 
-          isOpen={isModalOpen} 
-          onClose={() => setIsModalOpen(false)} 
-        />
-      )}
+      <AnimatePresence>
+        {isModalOpen && (
+          <motion.div
+            className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-70"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={(e) => e.target === e.currentTarget && setIsModalOpen(false)}
+          >
+            <motion.div
+              className="max-w-lg w-full"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+            >
+              {(isJoinBeta || text.toLowerCase().includes('join the beta')) && (
+                <CustomHubspotFormWithJS onClose={() => setIsModalOpen(false)} />
+              )}
+              
+              {(isEarlyAccess || text.toLowerCase().includes('secure early access') || text.toLowerCase().includes('early access')) && (
+                <EarlyAccessForm onClose={() => setIsModalOpen(false)} />
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };
@@ -96,3 +125,12 @@ export const CTAButtonGroup: React.FC<{children: React.ReactNode, className?: st
     </div>
   );
 };
+
+// Example update for HeaderCTA.tsx
+<CTAButton 
+  text="Secure Early Access" 
+  href="/early-access" 
+  variant="secondary"
+  isEarlyAccess={true}
+  ariaLabel="Secure early access to platform"
+/>
