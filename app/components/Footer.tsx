@@ -12,13 +12,13 @@ export default function Footer() {
         <li><Link href="/terms-of-service" className="hover:underline hover:text-[#22c55e] transition-colors">Terms of Service</Link></li>
       </ul>
       <div className="flex justify-center gap-6 mt-8">
-        <a href="#" className="social-link" aria-label="LinkedIn">
+        <a href="https://www.linkedin.com/company/synaplyai" target="_blank" className="social-link" aria-label="LinkedIn">
           <FontAwesomeIcon icon={faLinkedinIn} className="w-5 h-5" />
         </a>
         <a href="#" className="social-link" aria-label="Threads">
           <FontAwesomeIcon icon={faThreads} className="w-5 h-5" />
         </a>
-        <a href="#" className="social-link" aria-label="Facebook">
+        <a href="https://www.facebook.com/profile.php?id=61574741668484" target="_blank" className="social-link" aria-label="Facebook">
           <FontAwesomeIcon icon={faFacebookF} className="w-5 h-5" />
         </a>
       </div>
