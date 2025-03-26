@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { FormModalProvider } from './context/FormModalContext';
+import Analytics from './components/Analytics';
 
 // Use Inter as a replacement for Geist
 const inter = Inter({
@@ -19,8 +20,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SynaplyAI - Create, Collaborate, and Scale with AI",
-  description: "Enterprise-grade AI content creation with real-time collaboration and adaptive AI handling.",
+  title: 'SynaplyAI - Next-gen AI for Business',
+  description: 'SynaplyAI connects all your business applications into one unified intelligence layer.',
 };
 
 export default function RootLayout({
@@ -33,10 +34,11 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
-      <body>
+      <body className="bg-gray-900 text-white">
         <FormModalProvider>
           {children}
         </FormModalProvider>
+        <Analytics />
       </body>
     </html>
   );

@@ -32,7 +32,18 @@ export const CTAButton: React.FC<CTAButtonProps> = ({
   // For beta form
   if (isJoinBeta || text.toLowerCase().includes('join the beta')) {
     return (
-      <Link href="/join-beta" className={buttonStyles} aria-label={ariaLabel || text}>
+      <Link 
+        href="/join-beta" 
+        className={buttonStyles} 
+        aria-label={ariaLabel || text}
+        onClick={() => {
+          // Track button click
+          window.gtag?.('event', 'cta_click', {
+            'event_category': 'Navigation',
+            'event_label': 'Join Beta Button',
+          });
+        }}
+      >
         {text}
       </Link>
     );
@@ -41,7 +52,18 @@ export const CTAButton: React.FC<CTAButtonProps> = ({
   // For early access form
   if (isEarlyAccess || text.toLowerCase().includes('secure early access') || text.toLowerCase().includes('early access')) {
     return (
-      <Link href="/early-access" className={buttonStyles} aria-label={ariaLabel || text}>
+      <Link 
+        href="/early-access" 
+        className={buttonStyles} 
+        aria-label={ariaLabel || text}
+        onClick={() => {
+          // Track button click
+          window.gtag?.('event', 'cta_click', {
+            'event_category': 'Navigation',
+            'event_label': 'Early Access Button',
+          });
+        }}
+      >
         {text}
       </Link>
     );

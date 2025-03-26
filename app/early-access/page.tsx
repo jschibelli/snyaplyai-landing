@@ -26,6 +26,14 @@ export default function EarlyAccessPage() {
         target: "#early-access-form-container",
         onFormSubmitted: function() {
           console.log("Form submitted to HubSpot directly");
+          
+          // Track the conversion in Google Analytics
+          window.gtag?.('event', 'form_submission', {
+            'event_category': 'Early Access',
+            'event_label': 'Early Access Form',
+            'value': 1
+          });
+          
           setFormSubmitted(true);
           setTimeout(() => {
             router.push('/');

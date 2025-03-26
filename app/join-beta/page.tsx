@@ -13,7 +13,6 @@ export default function JoinBetaPage() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Using the same script loading approach that works for early-access
     const script = document.createElement('script');
     script.src = "//js.hsforms.net/forms/embed/v2.js";
     script.charset = "utf-8";
@@ -27,6 +26,14 @@ export default function JoinBetaPage() {
         target: "#beta-form-container",
         onFormSubmitted: function() {
           console.log("Form submitted to HubSpot directly");
+          
+          // Track the conversion in Google Analytics
+          window.gtag?.('event', 'form_submission', {
+            'event_category': 'Beta Program',
+            'event_label': 'Join Beta Form',
+            'value': 1
+          });
+          
           setFormSubmitted(true);
           setTimeout(() => {
             router.push('/');
