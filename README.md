@@ -119,10 +119,10 @@ vercel --prod
 Create a `.env.local` in the project root:
 
 ```env
-NEXT_PUBLIC_GA_MEASUREMENT_ID=G-THKJDTE7W3
-NEXT_PUBLIC_HUBSPOT_PORTAL_ID=242357063
-NEXT_PUBLIC_HUBSPOT_EARLY_ACCESS_FORM_ID=9edc5b80-7de8-491f-9aa2-528735e3d5ce
-NEXT_PUBLIC_HUBSPOT_BETA_FORM_ID=f081d6b8-8d0a-4acb-ba39-a489627973b7
+NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
+NEXT_PUBLIC_HUBSPOT_PORTAL_ID=XXXXXXXXX
+NEXT_PUBLIC_HUBSPOT_EARLY_ACCESS_FORM_ID=XXXXXXXX
+NEXT_PUBLIC_HUBSPOT_BETA_FORM_ID=XXXXXXXXX
 ```
 
 ---
@@ -138,7 +138,7 @@ Forms are injected via the HubSpot JS API and styled with our global CSS overrid
 
 ### Google Analytics
 
-- **GA4 Measurement ID**: `G-THKJDTE7W3`  
+- **GA4 Measurement ID**: `G-XXXXXXX`  
 - Page views tracked on route change  
 - Custom events: `cta_click`, `form_submission`, `form_abandon`  
 
