@@ -1,9 +1,9 @@
 "use client";
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
 import Script from 'next/script';
 import { usePathname, useSearchParams } from 'next/navigation';
 
-export default function Analytics() {
+function PageViewTracker() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -13,6 +13,10 @@ export default function Analytics() {
     window.gtag?.('config', 'G-THKJDTE7W3', { page_path: url });
   }, [pathname, searchParams]);
 
+  return null;
+}
+
+export default function Analytics() {
   return (
     <>
       {/* Google Analytics */}
@@ -32,6 +36,9 @@ export default function Analytics() {
           `,
         }}
       />
+      <Suspense fallback={null}>
+        <PageViewTracker />
+      </Suspense>
     </>
   );
 }
